@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+ <link href="https://fonts.cdnfonts.com/css/stars-dream" rel="stylesheet">
+ <link href="https://fonts.cdnfonts.com/css/lexend" rel="stylesheet">
+                
+                
+<title>CEK JODOH (JIEJIE VER) </title>
+<style>
+  /* Reset & base */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+body {
+    background: linear-gradient(rgba(0, 0, 0, 0.3)), #FFD700 url('bg.png') no-repeat center center/cover;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    flex-direction: column;
+  }
+  #app {
+    background: transparent;
+    backdrop-filter: blur(2px);
+    border-radius: 15px;
+    width: 100%;
+    max-width: 400px;
+    padding: 30px 25px 60px 25px;
+    position: relative;
+    margin-bottom: 20px;
+  }
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    font-family: 'Stars Dream', sans-serif;
+    -webkit-text-stroke: 1px ; /* Stroke untuk judul */
+  }
+  h1 .edition {
+    font-family: 'Stars Dream', sans-serif;
+  }
+  form {
+    display: flex;
+    gap: 15px;
+    /* form tetap di 1 baris */
+  }
+  input[type="text"] {
+    flex: none;
+    width: 180px; /* lebih kecil */
+    padding: 8px 12px;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  input[type="text"]:focus {
+    outline: none;
+    border-color: #fff;
+  }
+  button {
+    background-color: #FFD700;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button:disabled {
+    background-color: #ffffm;
+    cursor: not-allowed;
+  }
+  button:hover:not(:disabled) {
+    background-color: #b3396a;
+  }
+
+  #result {
+    min-height: 120px;
+    border: 1.5px solid #fff;
+    border-radius: 12px;
+    background: #fff;
+    padding: 20px;
+    text-align: Left;
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: Center;
+    color: #000;
+    position: relative;
+    margin-top: 12px; /* agar muncul langsung di bawah input */
+    font-family: 'Lexend', sans-serif;
+                                                
+  }
+  #result img {
+    max-width: 180px;
+    border-radius: 12px;
+    filter: brightness(0.85);
+  }
+
+  footer {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #fff;
+    user-select: none;
+    margin-top: 10px;
+  }
+  footer a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+  }
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+   #extra {
+    background: transparent;
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    width: 100%;
+    max-width: 400px;
+    padding: 25px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 10px;
+    color: #fff;
+    user-select: none;
+    font-family: 'Stars Dream', sans-serif;
+  }
+  #extra a {
+    color: #cccccc; /* Warna putih keabu-abuan */
+    text-decoration: none;
+    font-weight: 500; /* Font tidak terlalu flat */
+    font-family: 'Segoe UI', sans-serif;
+  }
+  #extra a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 480px) {
+    #app {
+      position: relative;
+    }
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <h1>CEK JODOH<br><span class="edition">(Chinese Actress Edition)</span></h1>
+  <form id="checkForm" autocomplete="off">
+    <input type="text" id="nameInput" placeholder="Masukkan Nama mu" />
+    <button type="submit" id="checkBtn" disabled>Cek</button>
+  </form>
+  <div id="result">
+    siapakah jodoh mu....
+  </div>
+</div>
+<footer>
+</footer>
+<div id="extra">
+     developed by <br />
+  <a href="https://t.me/arthurchensbot" target="_blank" rel="noopener"><img src="tg.png" alt="Telegram" style="width: 18px; height: 18px; margin-right: 5px; vertical-align: middle;">RyanChen</a>
+</div>
+</div>
+</div>
+
+<script>
+const actresses = [
+    { name: "Wang Churan", image: "churan.jpg" },
+    { name: "Ju Jingyi", image: "kiku.jpg" },
+    { name: "Zhang Jingyi", image: "joy.jpg" },
+    { name: "Gulnazar", image: "gulnazar.jpg" },
+    { name: "Dilraba Dilmurat", image: "dilraba.jpg" },
+    { name: "Tian Xi Wei", image: "xiwei.jpg" },
+    { name: "bai Mengyan", image: "bailulu.jpg" },
+    { name: "Zhao Jinmai", image: "jinmai.jpg" },
+    { name: "Yu Shuxin", image: "shuxin.jpg" },
+    { name: "Zhou Ye", image: "ye.jpg" },
+    { name: "Zhuang Dafei", image: "dafei.jpg" },
+    { name: "Wang Yinglu", image: "yinglu.jpg" },
+    { name: "Meng Zi Yi", image: "ziyi.jpg" },
+    { name: "Cheng Xiao", image: "xiao.jpg" },
+    { name: "Song Yuqi", image: "yuqi.jpg" },
+    { name: "Landy Li", image: "landy.jpg" },
+    { name: "Zhao Lu Si", image: "lusi.jpg" },
+    { name: "Zhang Miao Yi", image: "miaoyi.jpg" },
+    { name: "Shen Yue", image: "yue.jpg" },
+    { name: "Liu Haochun", image: "haochun.jpg" },
+    { name: "Bao Shangen", image: "bao.jpg" },
+    { name: "Li Yi Tong", image: "yitong.jpg" },
+    { name: "Lu Yuxiao", image: "yuxiao.jpg" },
+    { name: "Sun Zhen Ni", image: "mini.jpg" },
+    { name: "Zhang Ruonan", image: "ruonan.jpg" },
+    { name: "Xu Ruohan", image: "ruohan.jpg" },
+    { name: "Dai Lu Wa", image: "luwa.jpg" },
+    { name: "Song Zu Er", image: "zuer.jpg" },
+    { name: "Wu Ji Yan", image: "jiyan.jpg" },
+    { name: "Chen Duling", image: "chen.jpg" },
+    { name: "Liu Xie Ning", image: "xiening.jpg" },
+    { name: "Ren Min", image: "renmin.jpg" },
+    { name: "Zhu Xu Dan", image: "dan.jpg" },
+    { name: "Yang Chao Yue", image: "chaoyue.jpg" },
+    { name: "Ai Mi", image: "aimi.jpg" },
+    { name: "Julia Xiang", image: "julia.jpg" },
+    { name: "Shen Yu Jie", image: "yujie.jpg" },
+    { name: "Zhang Yuxi", image: "yuxi.jpg" }, 
+    { name: "Cheng Xiao", image: "xiao.jpg" }
+];
+
+
+  const checkedNames = new Set();
+
+  const nameInput = document.getElementById('nameInput');
+  const checkBtn = document.getElementById('checkBtn');
+  const resultDiv = document.getElementById('result');
+  const form = document.getElementById('checkForm');
+
+  nameInput.addEventListener('input', () => {
+    checkBtn.disabled = !nameInput.value.trim();
+  });
+
+  const bailuGifUrl = 'bailu.gif';
+
+  function shuffleArray(array) {
+    let copy = array.slice();
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  }
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const inputName = nameInput.value.trim().toLowerCase();
+
+    if (checkedNames.has(inputName)) {
+      resultDiv.textContent = 'Nama ini sudah pernah dicek, tidak bisa dicek ulang.';
+      return;
+    }
+
+    checkedNames.add(inputName);
+    checkBtn.disabled = true;
+    nameInput.disabled = true;
+
+    resultDiv.innerHTML = `<img src="${bailuGifUrl}" alt="Bailu bingung" />`;
+
+    setTimeout(() => {
+      const shuffledActresses = shuffleArray(actresses);
+      const randomActress = shuffledActresses[0];
+
+resultDiv.innerHTML = `<div style="text-align: center;"><span style="font-size: 0.8em;">Jodohmu Adalah:</span><br>${randomActress.name}<br><br><img src="${randomActress.image}" alt="${randomActress.name}" /></div>`;
+checkBtn.disabled = false;
+nameInput.disabled = false;
+nameInput.value = '';
+checkBtn.disabled = true;
+    }, 2000);
+  });
+</script>
+</body>
+</html>
